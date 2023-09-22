@@ -103,7 +103,7 @@ public class GameController : MonoBehaviour
 
     void OnItemMergedWithTarget(int targetSlotId)
     {
-        var slot = GetSlotById(targetSlotId);
+        var slot = GetSlotById(targetSlotId);   
         Destroy(slot.itemObject.gameObject);
         slot.CreateItem(carryingItem.itemId + 1);
         Destroy(carryingItem.gameObject);
