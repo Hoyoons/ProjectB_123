@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public float speedMod = 1.0f;
+    public float timeSinceStart = 0.0f;
+    public bool modeEnd = true;
+
     public float moveSpeed;
 
     private EnemyPath thePath;
@@ -22,6 +26,15 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(modeEnd == false)
+        {
+            timeSinceStart -= Time.deltaTime;
+            if (timeSinceStart <= 0.0f)
+            {
+                speedMod = 1.0f;
+                modeEnd = true;
+            }
+        }
         if(reachEnd == false)
         {
             transform.LookAt(thePath.points[currentPoint]);     //몬스터는 지금방향을 향해서 본다.
@@ -37,5 +50,11 @@ public class EnemyController : MonoBehaviour
                 }
             }
         }
+    }
+    public void SetMode(float Value)
+    {
+        modeEnd = false;
+        speedMod = Value;
+        timeSinceStart = 2.0f;
     }
 }
