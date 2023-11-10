@@ -39,7 +39,7 @@ public class EnemyController : MonoBehaviour
         {
             transform.LookAt(thePath.points[currentPoint]);     //몬스터는 지금방향을 향해서 본다.
             transform.position =
-                Vector3.MoveTowards(transform.position, thePath.points[currentPoint].position, moveSpeed * Time.deltaTime);
+                Vector3.MoveTowards(transform.position, thePath.points[currentPoint].position, moveSpeed * Time.deltaTime* speedMod);
             
             if(Vector3.Distance(transform.position , thePath.points[currentPoint].position) < 0.01f)
             {
